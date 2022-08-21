@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
           child: _Unfocus(child: widget),
         ),
       ),
-      home: SplashScreen(),
+      home: SidebarXExampleApp(),
     );
   }
 }

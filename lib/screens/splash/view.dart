@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:admin_pnal/Helper/cache_helper.dart';
 import 'package:admin_pnal/screens/app_screen/view.dart';
 import 'package:admin_pnal/screens/auth/login/view.dart';
 import 'package:admin_pnal/screens/auth/register/view.dart';
@@ -28,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
     //   Navigator.pushAndRemoveUntil(
     //     context,
     //     MaterialPageRoute(
-    //       builder: (context) => NavBarScreen(),
+    //       builder: (context) => SidebarXExampleApp(),
     //     ),
     //     (Route<dynamic> route) => false,
     //   );
@@ -36,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
-        builder: (context) => RegisterScreen(),
+        builder: (context) => SidebarXExampleApp(),
       ),
       (Route<dynamic> route) => false,
     );

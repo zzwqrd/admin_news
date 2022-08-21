@@ -140,7 +140,7 @@ class _ExampleSidebarXState extends State<ExampleSidebarX> {
         ),
         SidebarXItem(
             icon: FontAwesomeIcons.film,
-            label: 'News',
+            label: 'الاخبار',
             onTap: () {
               // Navigator.push(context, MaterialPageRoute(builder: (context) => News()));
               setState(() {
