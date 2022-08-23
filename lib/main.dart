@@ -56,15 +56,15 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
-      builder: (context, widget) => Directionality(
-        textDirection: context.locale.languageCode == "ar" ? TextDirection.rtl : TextDirection.ltr,
-        child: MediaQuery(
-          data: MediaQuery.of(context).copyWith(
-            textScaleFactor: 1.0,
-          ),
-          child: _Unfocus(child: widget),
-        ),
-      ),
+      // builder: (context, widget) => Directionality(
+      //   textDirection: context.locale.languageCode == "ar" ? TextDirection.rtl : TextDirection.ltr,
+      //   child: MediaQuery(
+      //     data: MediaQuery.of(context).copyWith(
+      //       textScaleFactor: 1.0,
+      //     ),
+      //     child: _Unfocus(child: widget),
+      //   ),
+      // ),
       home: SidebarXExampleApp(),
     );
   }

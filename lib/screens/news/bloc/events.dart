@@ -1,3 +1,4 @@
+import 'package:admin_pnal/screens/news/bloc/addNewsModel.dart';
 import 'package:flutter/cupertino.dart';
 
 class ShowNewsEvents {}
@@ -24,9 +25,10 @@ class DeleteNewsEventStart extends DeleteNewsEvents {
 class AddNewsEvents {}
 
 class AddNewsEventStart extends AddNewsEvents {
-  String? title;
-  String? description;
-  // dynamic? image;
+  // CustomerData collectData;
+  String title;
+  String description;
+  // dynamic image;
   AddNewsEventStart({
     required this.title,
     required this.description,

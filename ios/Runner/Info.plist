@@ -28,6 +28,25 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSCameraUsageDescription</key>
+	<string>يريد تطبيق Home Food الوصول الي الكاميرا لأضافة صورة شخصية</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string> برجاء السماح لتطبيق Home Food باستخدام الخريطه وذلك لتحديد موقعك الحالى لكى يتمكن مندوبنا من إستلام الطلب منك  </string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string> برجاء السماح لتطبيق Home Food باستخدام الخريطه وذلك لتحديد موقعك الحالى لكى يتمكن مندوبنا من إستلام الطلب منك   </string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string> برجاء السماح لتطبيق Home Food باستخدام الخريطه وذلك لتحديد موقعك الحالى لكى يتمكن مندوبنا من إستلام الطلب منك   </string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>يريد تطبيق Home Food الوصول الي المعرض لأضافة صورة شخصية </string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

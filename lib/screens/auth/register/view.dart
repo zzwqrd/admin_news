@@ -62,7 +62,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     }
                   },
-                  onSaved: (o) {},
+                  // onSaved: (o) {},
                   hintText: 'Name',
                   prefix: 'assets/icons/prefix-Phone.png',
                   enabled: true,
@@ -79,7 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     }
                   },
-                  onSaved: (o) {},
+                  // onSaved: (o) {},
                   hintText: 'Email',
                   prefix: 'assets/icons/prefix-Phone.png',
                   enabled: true,
@@ -96,7 +96,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     }
                   },
-                  onSaved: (o) {},
+                  // onSaved: (o) {},
                   hintText: 'password',
                   prefix: 'assets/icons/prefix-Phone.png',
                   enabled: true,
@@ -113,7 +113,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     }
                   },
-                  onSaved: (o) {},
+                  // onSaved: (o) {},
                   hintText: 'password_confirmation',
                   prefix: 'assets/icons/prefix-Phone.png',
                   enabled: true,

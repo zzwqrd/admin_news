@@ -6,8 +6,9 @@ import 'package:admin_pnal/Helper/prefs.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
-// const String BASE_URL = "https://http://127.0.0.1:8000/avtar_2/public/api";
-const String BASE_URL = "http://localhost/avtar_2/public/api";
+// const String BASE_URL = "http://192.168.1.5/avtar_2/public/api";
+// const String BASE_URL = "http://localhost/avtar_2/public/api";
+const String BASE_URL = "http://192.168.1.5/avtar_2/public/api";
 
 class ServerGate {
   Dio dio = Dio();

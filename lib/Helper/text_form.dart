@@ -6,7 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 Widget txtField(
     {BuildContext? context,
     dynamic validator,
-    dynamic onSaved,
+    dynamic onChanged,
     String? hintText,
     bool? enabled,
     TextInputType? textInputType,
@@ -18,7 +18,7 @@ Widget txtField(
     child: TextFormField(
       validator: validator,
       controller: controller,
-      onSaved: onSaved,
+      onChanged: onChanged,
       enabled: enabled,
       //   textAlign: TextAlign.center,
       keyboardType: textInputType,

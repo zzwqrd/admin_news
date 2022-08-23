@@ -6,38 +6,52 @@ import 'dart:convert';
 
 ShowNewsModel showNewsModelFromJson(String str) => ShowNewsModel.fromJson(json.decode(str));
 
+String showNewsModelToJson(ShowNewsModel data) => json.encode(data.toJson());
+
 class ShowNewsModel {
   ShowNewsModel({
     required this.status,
-    required this.posts,
+    required this.data,
   });
 
   bool status;
-  List<Post> posts;
+  List<Datum> data;
 
   factory ShowNewsModel.fromJson(Map<String, dynamic> json) => ShowNewsModel(
         status: json["status"],
-        posts: List<Post>.from(json["posts"].map((x) => Post.fromJson(x))),
+        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
       );
+
+  Map<String, dynamic> toJson() => {
+        "status": status,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+      };
 }
 
-class Post {
-  Post({
+class Datum {
+  Datum({
     required this.id,
     required this.title,
     required this.image,
-    required this.dascription,
+    required this.description,
   });
 
   int id;
   String title;
   String image;
-  String dascription;
+  String description;
 
-  factory Post.fromJson(Map<String, dynamic> json) => Post(
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
         title: json["title"],
         image: json["image"],
-        dascription: json["dascription"],
+        description: json["description"],
       );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "title": title,
+        "image": image,
+        "description": description,
+      };
 }

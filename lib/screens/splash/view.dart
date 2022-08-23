@@ -17,30 +17,30 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   goToHomePage() async {
-    // if (CacheHelper.getFCMToken() == null || CacheHelper.getFCMToken() == '') {
-    //   Navigator.pushAndRemoveUntil(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => LoginScreen(),
-    //     ),
-    //     (Route<dynamic> route) => false,
-    //   );
-    // } else {
-    //   Navigator.pushAndRemoveUntil(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => SidebarXExampleApp(),
-    //     ),
-    //     (Route<dynamic> route) => false,
-    //   );
-    // }
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SidebarXExampleApp(),
-      ),
-      (Route<dynamic> route) => false,
-    );
+    if (CacheHelper.getFCMToken() == null || CacheHelper.getFCMToken() == '') {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginScreen(),
+        ),
+        (Route<dynamic> route) => false,
+      );
+    } else {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SidebarXExampleApp(),
+        ),
+        (Route<dynamic> route) => false,
+      );
+    }
+    // Navigator.pushAndRemoveUntil(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => LoginScreen(),
+    //   ),
+    //   (Route<dynamic> route) => false,
+    // );
   }
 
   @override

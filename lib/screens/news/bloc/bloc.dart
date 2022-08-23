@@ -4,6 +4,7 @@ import 'package:admin_pnal/screens/news/bloc/events.dart';
 import 'package:admin_pnal/screens/news/bloc/model.dart';
 import 'package:admin_pnal/screens/news/bloc/states.dart';
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class ShowNewsBloc extends Bloc<ShowNewsEvents, ShowNewsStates> {
@@ -19,8 +20,8 @@ class ShowNewsBloc extends Bloc<ShowNewsEvents, ShowNewsStates> {
 
       if (response.success!) {
         ShowNewsModel _model = ShowNewsModel.fromJson(response.response!.data);
-        print(_model.posts[0].image);
-        yield ShowNewsStateSuccess(data: _model.posts);
+        print(_model.data[0].image);
+        yield ShowNewsStateSuccess(data: _model.data);
       } else {
         print("from map event to state show error => ");
         print(response.error.toString());
@@ -120,20 +121,23 @@ class AddNewsBloc extends Bloc<AddNewsEvents, AddNewsStates> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-  dynamic imageController;
+  CustomerData collectData = CustomerData(
+    title: TextEditingController(),
+    description: TextEditingController(),
+    image: null,
+  );
 
   @override
   Stream<AddNewsStates> mapEventToState(AddNewsEvents event) async* {
     if (event is AddNewsEventStart) {
       yield AddStateStart();
       CustomResponse response = await addNews(
-        title: event.title,
-        description: event.description,
-        // image: event.image,
+        // collectData: event.collectData,
+        title: event.title.toString(),
+        description: event.description.toString(),
       );
       if (response.success!) {
-        AddNewsModel model = AddNewsModel.fromJson(response.response!.data);
-        yield AddStateSuccess(model: model);
+        yield AddStateSuccess();
       } else {
         if (response.errType == 0) {
           yield AddStateFailed(
@@ -141,7 +145,6 @@ class AddNewsBloc extends Bloc<AddNewsEvents, AddNewsStates> {
             msg: "Network error ",
           );
         } else if (response.errType == 1) {
-          // print("from xxxxx => ${response.error['message']}");
           yield AddStateFailed(
             errType: 1,
             msg: response.msg,
@@ -157,26 +160,23 @@ class AddNewsBloc extends Bloc<AddNewsEvents, AddNewsStates> {
   }
 
   Future<CustomResponse> addNews({
-    String? title,
-    String? description,
-    // dynamic? image,
+    // required CustomerData collectData,
+    required String title,
+    required String description,
   }) async {
     serverGate.addInterceptors();
-    print("***************$title********************");
-    print("***************$description********************");
-    // print("***************$image********************");
-    CustomResponse response = await serverGate.sendToServer(
-      url: 'new/add',
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-      },
-      body: {
-        "title": title,
-        "description": description,
-        "image": 'http://127.0.0.1:8000/1660936512.png',
-      },
-    );
+
+    print("***************$collectData********************");
+    CustomResponse response = await serverGate.sendToServer(url: 'new/add', headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    },
+        // body: collectData.toJson(),
+        body: {
+          "title": title,
+          "description": description,
+          "image": 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_NVsTCFrgu9QcFML119RrCIvXw2_9keJNuw&usqp=CAU',
+        });
     return response;
   }
 }

@@ -6,7 +6,7 @@ class ShowNewsStates {}
 class ShowNewsStateStart extends ShowNewsStates {}
 
 class ShowNewsStateSuccess extends ShowNewsStates {
-  List<Post>? data = [];
+  List<Datum>? data = [];
   ShowNewsStateSuccess({required this.data});
 }
 
@@ -48,10 +48,10 @@ class AddNewsStates {}
 class AddStateStart extends AddNewsStates {}
 
 class AddStateSuccess extends AddNewsStates {
-  AddNewsModel model;
-  AddStateSuccess({
-    required this.model,
-  });
+  // AddNewsModel model;
+  // AddStateSuccess({
+  //   required this.model,
+  // });
 }
 
 class AddStateFailed extends AddNewsStates {

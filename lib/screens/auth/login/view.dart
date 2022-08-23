@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       return null;
                     }
                   },
-                  onSaved: (o) {},
+                  // onSaved: (o) {},
                   hintText: 'Email',
                   prefix: 'assets/icons/prefix-Phone.png',
                   enabled: true,
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       return null;
                     }
                   },
-                  onSaved: (o) {},
+                  // onSaved: (o) {},
                   hintText: 'password',
                   prefix: 'assets/icons/prefix-Phone.png',
                   enabled: true,

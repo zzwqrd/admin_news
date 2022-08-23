@@ -1,42 +1,19 @@
-import 'dart:convert';
+import 'package:flutter/material.dart';
 
-AddNewsModel addNewsModelFromJson(String str) => AddNewsModel.fromJson(json.decode(str));
-
-class AddNewsModel {
-  AddNewsModel({
-    required this.status,
-    required this.message,
-    required this.posts,
-  });
-
-  bool status;
-  String message;
-  Posts posts;
-
-  factory AddNewsModel.fromJson(Map<String, dynamic> json) => AddNewsModel(
-        status: json["status"],
-        message: json["message"],
-        posts: Posts.fromJson(json["posts"]),
-      );
-}
-
-class Posts {
-  Posts({
-    required this.title,
-    required this.dascription,
-    required this.image,
-    required this.id,
-  });
-
-  String title;
-  String dascription;
+class CustomerData {
+  TextEditingController title;
+  TextEditingController description;
   dynamic image;
-  int id;
 
-  factory Posts.fromJson(Map<String, dynamic> json) => Posts(
-        title: json["title"],
-        dascription: json["dascription"],
-        image: json["image"],
-        id: json["id"],
-      );
+  CustomerData({
+    required this.title,
+    required this.description,
+    required this.image,
+  });
+
+  Map<String, dynamic> toJson() => {
+        "title": title,
+        "description": description,
+        "image": 'no imge',
+      };
 }

@@ -3,26 +3,22 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:admin_pnal/Helper/Btns.dart';
-import 'package:admin_pnal/Helper/Color.dart';
-import 'package:admin_pnal/Helper/app_theme.dart';
+
 import 'package:admin_pnal/Helper/fluttertoast.dart';
+
 import 'package:admin_pnal/Helper/text_form.dart';
 import 'package:admin_pnal/Helper/visitor.dart';
-import 'package:admin_pnal/screens/app_screen/view.dart';
+
 import 'package:admin_pnal/screens/news/bloc/bloc.dart';
 import 'package:admin_pnal/screens/news/bloc/events.dart';
 import 'package:admin_pnal/screens/news/bloc/states.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screen_scaling/flutter_screen_scaling.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:image_picker/image_picker.dart';
 import 'package:kiwi/kiwi.dart';
-import 'package:multi_image_picker/multi_image_picker.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:responsive_grid/responsive_grid.dart';
-import 'package:sidebarx/sidebarx.dart';
+
 import 'package:easy_localization/easy_localization.dart';
 
 class NewsScreen extends StatefulWidget {
@@ -35,11 +31,15 @@ class _NewsScreenState extends State<NewsScreen> {
   DeleteNewsBloc blocDelete = KiwiContainer().resolve<DeleteNewsBloc>();
   AddNewsBloc blocAdd = KiwiContainer().resolve<AddNewsBloc>();
 
+  // CustomerData collectData = CustomerData(
+  //   title: blocAdd.collectData.title
+  // );
   @override
   void initState() {
     bloc.add(ShowNewsEventStart());
+    blocAdd.collectData.title = TextEditingController();
+    blocAdd.collectData.description = TextEditingController();
 
-    // blocDelete.add(DeleteStateStart());
     super.initState();
   }
 
@@ -67,16 +67,34 @@ class _NewsScreenState extends State<NewsScreen> {
                     key: blocAdd.formKey,
                     child: Column(
                       children: [
-                        // IconButton(
-                        //   onPressed: () {
-                        //     setState(() {
-                        //       takeImage(ImageSource.gallery);
-                        //       blocAdd.imageController = imageFile!.path;
-                        //       print(imageFile!.path);
-                        //     });
-                        //   },
-                        //   icon: Icon(Icons.abc),
-                        // ),
+                        IconButton(
+                          onPressed: () {
+                            setState(() {
+                              // takeImage(ImageSource.gallery);
+                              // // blocAdd.imageController = imageFile!.path;
+                              // print(imageFile!.path);
+                              setState(() {
+                                _getProfilePic(
+                                  context: context,
+                                  source: ImageSource.gallery,
+                                );
+                                print("${profileImage}");
+                              });
+                            });
+                          },
+                          icon: Icon(Icons.abc),
+                        ),
+                        profileImage != null
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(75),
+                                child: Image.file(
+                                  File(profileImage!),
+                                  height: 150,
+                                  width: 150,
+                                  fit: BoxFit.fill,
+                                ),
+                              )
+                            : SizedBox.shrink(),
                         // CircleAvatar(
                         //   radius: 80.0,
                         //   backgroundImage: FileImage(File(imageFile!.path)),
@@ -84,36 +102,30 @@ class _NewsScreenState extends State<NewsScreen> {
                         txtField(
                           controller: blocAdd.titleController,
                           context: context,
-                          validator: (v) {
-                            if (v!.isEmpty) {
-                              return "title";
-                            } else {
-                              return null;
-                            }
+                          validator: (v) {},
+                          onChanged: (o) {
+                            blocAdd.titleController.text = o;
+                            // blocAdd.titleController.text = o;
                           },
-                          onSaved: (o) {},
                           hintText: 'title',
                           prefix: 'assets/icons/prefix-Phone.png',
                           enabled: true,
                           obscureText: false,
-                          textInputType: TextInputType.emailAddress,
+                          textInputType: TextInputType.text,
                         ),
                         txtField(
                           controller: blocAdd.descriptionController,
                           context: context,
-                          validator: (v) {
-                            if (v!.isEmpty) {
-                              return "description";
-                            } else {
-                              return null;
-                            }
+                          validator: (v) {},
+                          onChanged: (o) {
+                            blocAdd.descriptionController.text = o;
+                            // collectData.description!.text = o;
                           },
-                          onSaved: (o) {},
                           hintText: 'description',
                           prefix: 'assets/icons/prefix-Phone.png',
                           enabled: true,
                           obscureText: false,
-                          textInputType: TextInputType.emailAddress,
+                          textInputType: TextInputType.text,
                         ),
 
                         BlocConsumer(
@@ -121,7 +133,7 @@ class _NewsScreenState extends State<NewsScreen> {
                           listener: (context, state) {
                             if (state is AddStateSuccess) {
                               showMassege(
-                                text: state.model.message,
+                                text: "تم الاضافه",
                                 state: ToastStates.SUCCESS,
                               );
                             } else if (state is AddStateFailed) {
@@ -139,18 +151,18 @@ class _NewsScreenState extends State<NewsScreen> {
                                 context: context,
                                 txt: "add",
                                 onTap: () {
-                                  if (!blocAdd.formKey.currentState!.validate()) {
-                                    return;
-                                  } else {
-                                    blocAdd.formKey.currentState!.save();
+                                  setState(() {
                                     blocAdd.add(
                                       AddNewsEventStart(
-                                        description: blocAdd.descriptionController.text,
-                                        // image: blocAdd.imageController,
-                                        title: blocAdd.titleController.text,
+                                        // collectData: collectData!,
+                                        title: blocAdd.titleController.text.toString(),
+                                        description: blocAdd.descriptionController.text.toString(),
                                       ),
                                     );
-                                  }
+                                  });
+                                  if (!blocAdd.formKey.currentState!.validate()) {
+                                    return;
+                                  } else {}
                                 },
                               );
                             }
@@ -285,8 +297,12 @@ class _NewsScreenState extends State<NewsScreen> {
                                       borderRadius: BorderRadius.circular(2),
                                     ),
                                     child: Image(
-                                      image: NetworkImage(state.data![index].image),
+                                      // image: NetworkImage(state.data![index].image),
+                                      image: NetworkImage(
+                                        state.data![index].image,
+                                      ),
                                       height: 100.0,
+
                                       width: 100.0,
                                     ),
                                   ),
@@ -422,14 +438,28 @@ class _NewsScreenState extends State<NewsScreen> {
     );
   }
 
-  PickedFile? imageFile;
-
+  // /////////
+  ////////
+  ////////
   final ImagePicker picker = ImagePicker();
 
-  void takeImage(ImageSource source) async {
-    final pickerdFile = await picker.getImage(source: source);
+  dynamic? profileImage;
+
+  void _getProfilePic({
+    context,
+    ImageSource? source,
+  }) async {
+    FocusScope.of(context).unfocus();
+    final pickedFile = await picker.getImage(source: source!);
     setState(() {
-      imageFile = pickerdFile;
+      if (pickedFile != null) {
+        profileImage = pickedFile.path;
+      } else {
+        print('No image selected.');
+      }
+
+      Navigator.pop(context);
+      FocusScope.of(context).unfocus();
     });
   }
 }
