@@ -133,6 +133,7 @@ class AddNewsBloc extends Bloc<AddNewsEvents, AddNewsStates> {
       yield AddStateStart();
       CustomResponse response = await addNews(
         // collectData: event.collectData,
+        image: event.image.toString(),
         title: event.title.toString(),
         description: event.description.toString(),
       );
@@ -163,6 +164,7 @@ class AddNewsBloc extends Bloc<AddNewsEvents, AddNewsStates> {
     // required CustomerData collectData,
     required String title,
     required String description,
+    required dynamic image,
   }) async {
     serverGate.addInterceptors();
 
@@ -175,7 +177,8 @@ class AddNewsBloc extends Bloc<AddNewsEvents, AddNewsStates> {
         body: {
           "title": title,
           "description": description,
-          "image": 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_NVsTCFrgu9QcFML119RrCIvXw2_9keJNuw&usqp=CAU',
+          "image": image,
+          // "image": 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_NVsTCFrgu9QcFML119RrCIvXw2_9keJNuw&usqp=CAU',
         });
     return response;
   }

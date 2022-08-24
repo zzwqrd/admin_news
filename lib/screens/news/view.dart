@@ -84,17 +84,17 @@ class _NewsScreenState extends State<NewsScreen> {
                           },
                           icon: Icon(Icons.abc),
                         ),
-                        profileImage != null
-                            ? ClipRRect(
-                                borderRadius: BorderRadius.circular(75),
-                                child: Image.file(
-                                  File(profileImage!),
-                                  height: 150,
-                                  width: 150,
-                                  fit: BoxFit.fill,
-                                ),
-                              )
-                            : SizedBox.shrink(),
+                        // profileImage != null
+                        //     ? ClipRRect(
+                        //         borderRadius: BorderRadius.circular(75),
+                        //         child: Image.file(
+                        //           File(profileImage!),
+                        //           height: 150,
+                        //           width: 150,
+                        //           fit: BoxFit.fill,
+                        //         ),
+                        //       )
+                        //     : SizedBox.shrink(),
                         // CircleAvatar(
                         //   radius: 80.0,
                         //   backgroundImage: FileImage(File(imageFile!.path)),
@@ -155,6 +155,7 @@ class _NewsScreenState extends State<NewsScreen> {
                                     blocAdd.add(
                                       AddNewsEventStart(
                                         // collectData: collectData!,
+                                        image: profileImage.toString(),
                                         title: blocAdd.titleController.text.toString(),
                                         description: blocAdd.descriptionController.text.toString(),
                                       ),

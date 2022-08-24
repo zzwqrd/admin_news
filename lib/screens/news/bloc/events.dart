@@ -28,10 +28,10 @@ class AddNewsEventStart extends AddNewsEvents {
   // CustomerData collectData;
   String title;
   String description;
-  // dynamic image;
+  dynamic image;
   AddNewsEventStart({
     required this.title,
     required this.description,
-    // required this.image,
+    required this.image,
   });
 }

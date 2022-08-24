@@ -7,8 +7,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 // const String BASE_URL = "http://192.168.1.5/avtar_2/public/api";
-// const String BASE_URL = "http://localhost/avtar_2/public/api";
-const String BASE_URL = "http://192.168.1.5/avtar_2/public/api";
+const String BASE_URL = "http://localhost/avtar_2/public/api";
+// const String BASE_URL = "http://192.168.1.5/avtar_2/public/api";
 
 class ServerGate {
   Dio dio = Dio();
